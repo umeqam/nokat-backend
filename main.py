@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import init_db
 
@@ -20,10 +20,10 @@ def startup():
 def health():
     return {'status': 'ok'}
 
-@app.get('/api/v1/posts')
+@app.get('/posts')
 def get_posts(mode: str = None, region: str = None, limit: int = 20):
     return []
 
-@app.post('/api/v1/users')
+@app.post('/users')
 def create_user(username: str):
     return {'id': 1, 'username': username}
