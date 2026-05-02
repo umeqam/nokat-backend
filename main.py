@@ -16,6 +16,10 @@ app.add_middleware(
 def startup():
     init_db()
 
+@app.options('/{full_path:path}')
+async def preflight_handler(full_path: str):
+    return {}
+
 @app.get('/health')
 def health():
     return {'status': 'ok'}
