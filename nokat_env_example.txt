@@ -1,0 +1,12 @@
+# NOKAT Backend Environment Variables
+# Используй в Railway dashboard
+
+# Database (Railway выдаст это автоматически при подключении PostgreSQL)
+DATABASE_URL=postgresql://user:password@localhost:5432/nokat
+
+# Flask/FastAPI
+ENVIRONMENT=production
+DEBUG=False
+
+# API
+API_VERSION=v1
