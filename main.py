@@ -1,12 +1,6 @@
 ﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-import os
-
-from models import Base, User, Post, Response
-from schemas import UserCreate, PostCreate, ResponseCreate
-from database import get_db, engine
+from database import init_db
 
 app = FastAPI(title='NOKAT API')
 
@@ -20,16 +14,16 @@ app.add_middleware(
 
 @app.on_event('startup')
 def startup():
-    Base.metadata.create_all(bind=engine)
+    init_db()
 
 @app.get('/health')
 def health():
     return {'status': 'ok'}
 
-@app.post('/api/v1/users')
-def create_user(user: UserCreate):
-    return {'id': 1, 'username': user.username}
-
 @app.get('/api/v1/posts')
 def get_posts(mode: str = None, region: str = None, limit: int = 20):
     return []
+
+@app.post('/api/v1/users')
+def create_user(username: str):
+    return {'id': 1, 'username': username}
